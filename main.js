@@ -48,12 +48,10 @@ class ToDoItem {
 
 //localStorage.clear()
 let toDoObjects = {};
-console.log(toDoObjects)
 let storedObject = localStorage.getItem("myObject")
-console.log(storedObject)
+
 if (storedObject) {
   toDoObjects = JSON.parse(storedObject)
-  console.log(toDoObjects)
 }
 
 displayToDos(toDoObjects)
@@ -94,14 +92,13 @@ function displayToDos(obj) {
             ${obj[i].todo}
           </div>
           <div>
-            <button type="button" class="done-btn btn ${btnColor} shadow p-2">${btnText}</button>
-            <button type="button" class="close-btn btn btn-danger mx-2 text-black fw-bold fs-4 pt-0 shadow" >&times</button>
+            <button type="button" class="done-btn btn ${btnColor} shadow p-1 m-1">${btnText}</button>
+            <button type="button" class="close-btn btn btn-danger m-1 text-black fw-bold fs-4 py-0 shadow" >&times</button>
           </div>
         </div>`
       const toDoCard = document.createElement('div');
       toDoCard.innerHTML = newToDo
       const doneButton = toDoCard.querySelector('.done-btn')
-      const toDoAlert = toDoCard.querySelector('.alert-div')
       toDoArea.appendChild(toDoCard)
       doneButton.addEventListener('click', () => {
         if (doneButton.innerText === 'Done') {
