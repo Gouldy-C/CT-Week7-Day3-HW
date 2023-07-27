@@ -6,7 +6,6 @@ const submitButton = document.querySelector(".sub-btn");
 const toDoArea = document.querySelector(".to-do-items");
 const toDoMes = document.querySelector('.to-do-header')
 
-localStorage
 
 darkMode();
 
@@ -57,11 +56,7 @@ if (storedObject) {
   console.log(toDoObjects)
 }
 
-
-//let toDoCount = Object.keys(toDoObjects).length;
-
 displayToDos(toDoObjects)
-
 
 toDoForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -84,7 +79,6 @@ function getToDoData(){
   /* toDoCount++ */
   }
 }
-
 
 function displayToDos(obj) {
   toDoArea.innerHTML = ''
