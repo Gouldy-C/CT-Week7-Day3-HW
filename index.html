@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./main.js" defer></script>
+  <link rel="stylesheet" href="./main.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous" defer></script>
+  <title>To-Do App</title>
+</head>
+<body class="d-flex bg-dark text-light">
+  <main class="body-main mx-auto">
+    <div class="header-container d-flex justify-content-between">
+      <h1 class="main-header">To-Do App</h1>
+      <button class="theme-btn btn btn-light my-auto">Light</button>
+    </div>
+    <div class="to-do-items my-3 p-2">
+      <h2 class="to-do-header"></h2>
+    </div>
+    <form action="" class="to-do-form p-2 rounded-2 shadow ">
+      <label for="add-todo">To-Do</label><br>
+      <input type="text" name="add-todo" id="todo-input" class="todo-input form-control px-2 w-100 shadow" placeholder="What Do You Need To Do?">
+      <div class="priority-radios mt-3 rounded-2 p-2">
+        <p class="priority-header mb-1">What is the priority of this to do?</p>
+        <div class="bg-danger rounded-1 px-3 py-1 d-inline-block shadow">
+          <input type="radio" class="" id="high-priority" name="priority-level" value="danger">
+          <label for="high-priority" class="fw-bold">High</label>
+        </div>
+        <div class="bg-warning rounded-1 px-3 py-1 d-inline-block shadow">
+          <input type="radio" class="" id="medium-priority" name="priority-level" value="warning">
+          <label for="medium-priority" class="fw-bold">Medium</label>
+        </div>
+        <div class="bg-success rounded-1 px-3 py-1 d-inline-block shadow">
+          <input type="radio" class="" id="low-priority" name="priority-level" value="success">
+          <label for="low-priority" class="fw-bold">Low</label>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input class="sub-btn btn mt-3 mb-2 shadow" type="submit" value="Add To-Do">
+      </div>
+    </form>
+  </main>
+  
+</body>
+</html>

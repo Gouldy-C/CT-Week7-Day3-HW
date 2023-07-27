@@ -1,0 +1,16 @@
+.body-main {
+  width: max(38% , 350px);
+}
+
+.to-do-form{
+  background-color: #435B66;
+  border: 2px solid rgba(255, 255, 255, 0.404);
+}
+.sub-btn{
+  background: white !important;
+}
+
+.priority-radios {
+  border: 2px solid rgba(255, 255, 255, 0.404);
+}
+
