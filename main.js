@@ -40,10 +40,10 @@ function titleCase(str) {
 }
 
 class ToDoItem {
-  constructor(todo, priority) {
+  constructor(todo, priority, done) {
     this.todo = todo
     this.priority = priority
-    this.originalPriority = priority
+    this.done = done
   }
 }
 
@@ -58,33 +58,30 @@ if (storedObject) {
 }
 
 
-
-let toDoCount = Object.keys(toDoObjects).length;
+//let toDoCount = Object.keys(toDoObjects).length;
 
 displayToDos(toDoObjects)
 
 
 toDoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  getToDoData(toDoCount);
+  getToDoData();
   displayToDos(toDoObjects)
   toDoForm.reset()
 });
 
-function getToDoData(index){
+function getToDoData(){
   const priorityLevel = document.getElementsByName('priority-level')
   let priority = ''
   for(level of priorityLevel){
     if (level.checked){
-      priority = level.value
-    }
-  }
+      priority = level.value}}
   const text = document.querySelector('#todo-input').value
   if (!priority || !text){
     console.log('invalid input')
   }else {
-    toDoObjects[index] = new ToDoItem(todo=text, priority=priority)
-  toDoCount++
+    toDoObjects[text] = new ToDoItem(todo=text, priority=priority, done=false)
+  /* toDoCount++ */
   }
 }
 
@@ -93,13 +90,17 @@ function displayToDos(obj) {
   toDoArea.innerHTML = ''
   if (Object.keys(obj).length) {
     for (const i in obj) {
+      const done = obj[i].done
+      const alertColor = done ? 'alert-secondary' : `alert-${obj[i].priority}`
+      const btnColor = done ? 'btn-success' : `btn-secondary`
+      const btnText = done ? 'Undo' : 'Done'
       const newToDo = 
-        `<div class="alert-div alert alert-${obj[i].priority} d-flex align-items-center justify-content-between" id='${i}'>
+        `<div class="alert-div alert ${alertColor}  d-flex align-items-center justify-content-between" id='${i}'>
           <div>
             ${obj[i].todo}
           </div>
           <div>
-            <button type="button" class="done-btn btn btn-secondary shadow p-2">Done</button>
+            <button type="button" class="done-btn btn ${btnColor} shadow p-2">${btnText}</button>
             <button type="button" class="close-btn btn btn-danger mx-2 text-black fw-bold fs-4 pt-0 shadow" >&times</button>
           </div>
         </div>`
@@ -110,26 +111,20 @@ function displayToDos(obj) {
       toDoArea.appendChild(toDoCard)
       doneButton.addEventListener('click', () => {
         if (doneButton.innerText === 'Done') {
-          doneButton.classList.toggle('btn-success')
-          doneButton.innerText = 'Undo'
-          toDoAlert.classList.toggle(`alert-${toDoObjects[i].originalPriority}`)
-          toDoObjects[i].priority = 'secondary'
-          toDoAlert.classList.toggle(`alert-${toDoObjects[i].priority}`)
+          toDoObjects[i].done = true
+          displayToDos(toDoObjects)
         }
         else{
-          doneButton.classList.toggle('btn-success')
-          doneButton.innerText = 'Done'
-          toDoAlert.classList.toggle(`alert-${toDoObjects[i].priority}`)
-          toDoObjects[i].priority = toDoObjects[i].originalPriority
-          toDoAlert.classList.toggle(`alert-${toDoObjects[i].originalPriority}`)
+          toDoObjects[i].done = false
+          displayToDos(toDoObjects)
       }})
       toDoCard.querySelector('.close-btn').addEventListener('click', () => {
         toDoCard.remove()
         delete toDoObjects[i]
         displayToDos(toDoObjects)
       })
+      localStorage.setItem("myObject", JSON.stringify(toDoObjects))
     }
-    localStorage.setItem("myObject", JSON.stringify(toDoObjects))
   } else {
     localStorage.clear()
     const toDoMes = document.createElement('h2')
